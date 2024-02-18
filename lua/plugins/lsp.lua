@@ -8,17 +8,13 @@ return {
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp" }
+                ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "tsserver" }
             })
         end
     },
     {
-        "folke/neodev.nvim",
-        opts = {}
-    },
-    {
         "neovim/nvim-lspconfig",
-        dependencies = { "williamboman/mason-lspconfig.nvim", "folke/neodev.nvim" },
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
         config = function()
             local lspconfig = require("lspconfig")
 
@@ -26,6 +22,9 @@ return {
             lspconfig.clangd.setup({})
             lspconfig.gopls.setup({})
             lspconfig.pylsp.setup({})
+            lspconfig.html.setup({})
+            lspconfig.cssls.setup({})
+            lspconfig.tsserver.setup({})
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -37,7 +36,7 @@ return {
                     vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
                     vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
                     vim.keymap.set("n", "<leader>wl", function()
-                        print(vim.inspect(vim.lsp.buf.list_workleader_folders()))
+                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                     end, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)

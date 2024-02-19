@@ -9,6 +9,9 @@ return {
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
             "onsails/lspkind.nvim",
         },
         config = function()
@@ -28,12 +31,12 @@ return {
                 experimental = {
                     ghost_text = true,
                 },
-                sources = cmp.config.sources({
+                sources = {
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
-                }),
+                },
                 formatting = {
                     format = require("lspkind").cmp_format({
                         mode = "symbol",
@@ -43,10 +46,11 @@ return {
                         ellipsis_char = "...",
                         show_labelDetails = true,
                         menu = {
-                            luasnip = " [LuaSnip]",
                             nvim_lsp = " [LSP]",
+                            luasnip = " [LuaSnip]",
                             buffer = " [Buffer]",
                             path = " [Path]",
+                            cmdline = " [Cmdline]",
                         },
                     }),
                 },
@@ -76,6 +80,21 @@ return {
                         end
                     end),
                 }),
+            })
+
+            cmp.setup.cmdline({ "/", "?" }, {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "buffer" },
+                },
+            })
+
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "cmdline" },
+                    { name = "path" },
+                },
             })
         end,
     },

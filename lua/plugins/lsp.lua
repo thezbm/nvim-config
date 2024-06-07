@@ -1,4 +1,4 @@
-local ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "eslint", "tsserver" }
+local ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "eslint", "tsserver", "elixirls" }
 
 return {
     {
@@ -20,7 +20,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-        dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim" },
+        dependencies = { "williamboman/mason.nvim","williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim" },
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()

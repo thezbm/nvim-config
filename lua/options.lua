@@ -26,7 +26,7 @@ local options = {
     pumheight = 10,
     timeout = true,
     timeoutlen = 500,
-    updatetime = 500
+    updatetime = 500,
 }
 
 for k, v in pairs(options) do

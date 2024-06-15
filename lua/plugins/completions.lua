@@ -17,8 +17,7 @@ return {
         config = function()
             require("luasnip.loaders.from_vscode").lazy_load()
 
-            local cmp = require("cmp")
-            local luasnip = require("luasnip")
+            local cmp, luasnip = require("cmp"), require("luasnip")
 
             cmp.setup({
                 window = {
@@ -83,15 +82,32 @@ return {
                 }),
             })
 
+            local cmdlineCompletion = {
+                autocomplete = false,
+                completeopt = "menu,noselect",
+            }
+            local cmdlineMapping = cmp.mapping.preset.cmdline({
+                ["<Tab>"] = {
+                    c = function()
+                        if not cmp.visible() then
+                            cmp.complete()
+                        end
+                        cmp.select_next_item()
+                    end
+                },
+                ["<C-p>"] = cmp.config.disable,
+                ["<C-n>"] = cmp.config.disable,
+            })
             cmp.setup.cmdline({ "/", "?" }, {
-                mapping = cmp.mapping.preset.cmdline(),
+                completion = cmdlineCompletion,
+                mapping = cmdlineMapping,
                 sources = {
                     { name = "buffer" },
                 },
             })
-
             cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
+                completion = cmdlineCompletion,
+                mapping = cmdlineMapping,
                 sources = {
                     { name = "cmdline" },
                     { name = "path" },

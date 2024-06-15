@@ -10,7 +10,7 @@ return {
 				end,
 			},
 		})
-		vim.keymap.set("n", "<leader>rs", ":Autosession search<CR>")
+		vim.keymap.set("n", "<leader>rs", require("auto-session.session-lens").search_session)
 		vim.keymap.set("n", "<leader>ds", ":Autosession delete<CR>")
 	end,
 }

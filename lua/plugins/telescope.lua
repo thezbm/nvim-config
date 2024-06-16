@@ -7,7 +7,9 @@ return {
             require("telescope").setup({
                 defaults = {
                     layout_strategy = "vertical",
-                    layout_config = { preview_height = 0.6 },
+                    layout_config = {
+                        ["vertical"] = { preview_height = 0.6 },
+                    }
                 },
                 extensions = {
                     ["ui-select"] = {

@@ -1,4 +1,4 @@
-local ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "eslint", "tsserver", "elixirls" }
+local ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "eslint", "tsserver" }
 
 return {
     {

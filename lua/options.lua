@@ -38,3 +38,10 @@ vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.keymap.set("n", "<S-h>", ":bprev<CR>")
 vim.keymap.set("n", "<S-l>", ":bnext<CR>")
 vim.keymap.set("n", "<C-c>", ":bdelete<CR>")
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("YankHighlight", {}),
+    callback = function()
+        vim.highlight.on_yank()
+    end
+})

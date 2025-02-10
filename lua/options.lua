@@ -35,8 +35,8 @@ end
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
-vim.keymap.set("n", "<S-h>", ":bprev<CR>")
-vim.keymap.set("n", "<S-l>", ":bnext<CR>")
+vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+vim.keymap.set("v", "<leader>x", ":lua<CR>")
 vim.keymap.set("n", "<C-c>", ":bdelete<CR>")
 
 vim.api.nvim_create_autocmd("TextYankPost", {

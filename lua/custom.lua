@@ -4,6 +4,7 @@ local M = {}
 
 M.treesitter_languages = { "vim", "vimdoc", "query", "lua", "c", "markdown", "markdown_inline" }
 M.lsp_servers = { "lua_ls" }
+M.colorscheme = "catppuccin-mocha"
 
 local ok, custom_config = pcall(dofile, vim.fn.expand(custom_config_path))
 if ok and type(custom_config) == "table" then
@@ -12,6 +13,9 @@ if ok and type(custom_config) == "table" then
     end
     if vim.islist(custom_config.lsp_servers) then
         vim.list_extend(M.lsp_servers, custom_config.lsp_servers)
+    end
+    if type(custom_config.colorscheme) == "string" then
+        M.colorscheme = custom_config.colorscheme
     end
 end
 

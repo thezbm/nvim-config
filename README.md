@@ -14,5 +14,6 @@ Write extra custom configs to `~/.nvim-custom.lua`, for example:
 return {
     treesitter_languages = { "go", "python" },
     lsp_servers = { "gopls", "pyright" },
+    colorscheme = "catppuccin",
 }
 ```

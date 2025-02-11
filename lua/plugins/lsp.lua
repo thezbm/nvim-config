@@ -1,4 +1,4 @@
-local ensure_installed = { "lua_ls", "clangd", "gopls", "pylsp", "html", "cssls", "eslint", "tsserver" }
+local lsp_servers = require("custom").lsp_servers
 
 return {
     {
@@ -10,7 +10,7 @@ return {
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = ensure_installed,
+                ensure_installed = lsp_servers,
             })
         end,
     },
@@ -23,7 +23,7 @@ return {
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            for _, server in ipairs(ensure_installed) do
+            for _, server in ipairs(lsp_servers) do
                 lspconfig[server].setup({ capabilities = capabilities })
             end
 

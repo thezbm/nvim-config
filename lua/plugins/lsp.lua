@@ -1,5 +1,3 @@
-local lsp_servers = Custom.lsp_servers
-
 return {
     {
         "williamboman/mason.nvim",
@@ -10,7 +8,7 @@ return {
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = lsp_servers,
+                ensure_installed = CustomConfig.lsp_servers.ensure_installed,
             })
         end,
     },
@@ -23,7 +21,7 @@ return {
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            for _, server in ipairs(lsp_servers) do
+            for _, server in ipairs(CustomConfig.lsp_servers.enabled) do
                 lspconfig[server].setup({ capabilities = capabilities })
             end
 

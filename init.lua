@@ -13,7 +13,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-Custom = require("custom")
+---@type CustomConfig
+CustomConfig = require("custom")
 
 require("lazy").setup("plugins", {
     defaults = {

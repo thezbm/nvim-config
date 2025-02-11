@@ -1,8 +1,8 @@
 local set_colorscheme = function()
-    if vim.g.colors_name == Custom.colorscheme then
+    if vim.g.colors_name == CustomConfig.colorscheme then
         return
     end
-    vim.cmd.colorscheme(Custom.colorscheme)
+    vim.cmd.colorscheme(CustomConfig.colorscheme)
 end
 
 return {

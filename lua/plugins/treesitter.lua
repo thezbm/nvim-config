@@ -4,7 +4,7 @@ return {
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
-            ensure_installed = require("custom").treesitter_languages,
+            ensure_installed = Custom.treesitter_languages,
             sync_install = true,
             highlight = { enable = true },
             indent = { enable = true },

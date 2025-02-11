@@ -1,4 +1,4 @@
-local lsp_servers = require("custom").lsp_servers
+local lsp_servers = Custom.lsp_servers
 
 return {
     {

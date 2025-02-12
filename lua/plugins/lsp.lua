@@ -48,6 +48,12 @@ return {
                     end, opts)
                 end,
             })
+
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = "single",
+                max_width = math.floor(vim.o.columns * 0.7),
+                max_height = math.floor(vim.o.lines * 0.4),
+            })
         end,
     },
 }

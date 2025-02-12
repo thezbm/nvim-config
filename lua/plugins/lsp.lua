@@ -14,12 +14,17 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-        dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "folke/neodev.nvim",
+            "saghen/blink.cmp",
+        },
         config = function()
             require("neodev").setup()
 
             local lspconfig = require("lspconfig")
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             for _, server in ipairs(CustomConfig.lsp_servers.enabled) do
                 lspconfig[server].setup({ capabilities = capabilities })

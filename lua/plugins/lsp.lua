@@ -54,6 +54,9 @@ return {
                 end,
             })
 
+            vim.diagnostic.config {
+                float = { border = "single" },
+            }
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                 border = "single",
                 max_width = math.floor(vim.o.columns * 0.7),

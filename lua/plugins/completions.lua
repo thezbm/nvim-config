@@ -25,10 +25,16 @@ return {
                 }
             },
             documentation = {
+                window = {
+                    border = "solid",
+                },
                 auto_show = true,
             },
         },
         signature = {
+            window = {
+                border = "solid",
+            },
             enabled = true,
         },
     },

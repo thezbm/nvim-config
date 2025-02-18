@@ -19,6 +19,11 @@ return {
             menu = {
                 auto_show = function(ctx) return ctx.mode ~= "cmdline" end,
             },
+            list = {
+                selection = {
+                    preselect = function(ctx) return ctx.mode ~= "cmdline" end,
+                }
+            },
             documentation = {
                 auto_show = true,
             },

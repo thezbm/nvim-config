@@ -1,5 +1,5 @@
 local function find_shell()
-    local shells = { "pwsh", "powershell", "zsh", "bash" }
+    local shells = { "pwsh", "powershell", "fish", "zsh", "bash" }
     for _, shell in ipairs(shells) do
         if vim.fn.executable(shell) == 1 then
             return shell

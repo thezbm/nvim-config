@@ -14,7 +14,7 @@ local M = {
         ensure_installed = { "lua_ls" },
         enabled = { "lua_ls" },
     },
-    colorscheme = "catppuccin-mocha",
+    colorscheme = "catppuccin",
 }
 
 local custom_config_path = "~/.nvim-custom.lua"

@@ -5,7 +5,7 @@ return {
         require("auto-session").setup({
             auto_session_suppress_dirs = { "~/" },
         })
-        vim.keymap.set("n", "<leader>rs", require("auto-session.session-lens").search_session)
-        vim.keymap.set("n", "<leader>ds", ":Autosession delete<CR>")
+        vim.keymap.set("n", "<leader>rs", ":AutoSession search<CR>")
+        vim.keymap.set("n", "<leader>ds", ":AutoSession deletePicker<CR>")
     end
 }

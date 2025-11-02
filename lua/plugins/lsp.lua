@@ -30,7 +30,7 @@ return {
                 lspconfig[server].setup({ capabilities = capabilities })
             end
 
-            vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float)
+            vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
             vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
             vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
@@ -59,8 +59,8 @@ return {
             }
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                 border = "single",
-                max_width = math.floor(vim.o.columns * 0.7),
-                max_height = math.floor(vim.o.lines * 0.4),
+                max_width = math.floor(vim.o.columns * 0.8),
+                max_height = math.floor(vim.o.lines * 0.6),
             })
         end,
     },

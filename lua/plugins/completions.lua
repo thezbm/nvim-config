@@ -27,6 +27,7 @@ return {
         },
         completion = {
             menu = {
+                border = "none",
                 auto_show = function(ctx) return ctx.mode ~= "cmdline" end,
             },
             list = {

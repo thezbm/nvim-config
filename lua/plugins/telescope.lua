@@ -5,9 +5,15 @@ return {
         config = function()
             require("telescope").setup({
                 defaults = {
-                    layout_strategy = "vertical",
+                    layout_strategy = "horizontal",
                     layout_config = {
-                        ["vertical"] = { preview_height = 0.6 },
+                        ["horizontal"] = {
+                            width = 0.9,
+                            height = 0.9,
+                            preview_width = 0.6,
+                            preview_cutoff = 120,
+                            propmpt_position = "bottom",
+                        },
                     }
                 },
                 extensions = {
@@ -25,11 +31,11 @@ return {
             vim.keymap.set("n", "<leader>fr", builtin.resume, {})
             vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, {})
             vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
-            vim.keymap.set("n", "gr", builtin.lsp_references, {})
+            vim.keymap.set("n", "gr", builtin.lsp_references, {nowait = true})
             vim.keymap.set("n", "gii", builtin.lsp_implementations, {})
             vim.keymap.set("n", "gic", builtin.lsp_incoming_calls, {})
             vim.keymap.set("n", "goc", builtin.lsp_outgoing_calls, {})
-            vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, {})
+            vim.keymap.set("n", "gtd", builtin.lsp_type_definitions, {})
             vim.keymap.set("n", "<leader>dd", builtin.diagnostics, {})
             vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, {})
             vim.keymap.set("n", "<leader>S", builtin.lsp_workspace_symbols, {})

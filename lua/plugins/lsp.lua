@@ -38,17 +38,21 @@ return {
                 vim.lsp.enable(server)
             end
 
-            vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+            vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.open_float({ border = "single" }) end)
+            vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end)
+            vim.keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end)
 
+            local floating_opts = {
+                max_width = math.floor(vim.o.columns * 0.8),
+                max_height = math.floor(vim.o.lines * 0.6),
+            }
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(ev)
                     local opts = { buffer = ev.buf }
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+                    vim.keymap.set("n", "K", function() vim.lsp.buf.hover(floating_opts) end, opts)
+                    vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.signature_help(floating_opts) end, opts)
                     vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
                     vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
                     vim.keymap.set("n", "<leader>wl", function()
@@ -60,15 +64,6 @@ return {
                         vim.lsp.buf.format({ async = true })
                     end, opts)
                 end,
-            })
-
-            vim.diagnostic.config {
-                float = { border = "single" },
-            }
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-                border = "single",
-                max_width = math.floor(vim.o.columns * 0.8),
-                max_height = math.floor(vim.o.lines * 0.6),
             })
         end,
     },

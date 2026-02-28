@@ -27,6 +27,7 @@ local options = {
     timeout = true,
     timeoutlen = 500,
     updatetime = 500,
+    winborder = "single",
 }
 
 for k, v in pairs(options) do

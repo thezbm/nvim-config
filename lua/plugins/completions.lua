@@ -4,13 +4,23 @@ return {
     version = "*",
     opts = {
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+            providers = {
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    -- make lazydev completions top priority (see `:h blink.cmp`)
+                    score_offset = 100,
+                },
+            },
         },
         keymap = {
             preset = "default",
             ["<C-n>"] = { "show_and_insert", "select_next", "fallback" },
-            cmdline = {
-                preset = "default",
+        },
+        cmdline = {
+            keymap = {
+                preset = "cmdline",
                 ["<Tab>"] = { "show_and_insert", "select_next", "fallback" },
                 ["<S-Tab>"] = { "select_prev", "fallback" },
             }

@@ -13,21 +13,29 @@ return {
         end,
     },
     {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "folke/neodev.nvim",
+            "folke/lazydev.nvim",
             "saghen/blink.cmp",
         },
         config = function()
-            require("neodev").setup()
-
-            local lspconfig = require("lspconfig")
             local capabilities = require("blink.cmp").get_lsp_capabilities()
+            vim.lsp.config("*", { capabilities = capabilities })
 
             for _, server in ipairs(CustomConfig.lsp_servers.enabled) do
-                lspconfig[server].setup({ capabilities = capabilities })
+                vim.lsp.enable(server)
             end
 
             vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
